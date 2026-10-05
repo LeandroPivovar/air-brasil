@@ -158,6 +158,14 @@
     box.addEventListener("close", function () { boxImg.removeAttribute("src"); });
   }
 
+  // Vídeos da oficina: só um toca por vez
+  var clips = document.querySelectorAll(".clip video");
+  clips.forEach(function (video) {
+    video.addEventListener("play", function () {
+      clips.forEach(function (other) { if (other !== video) other.pause(); });
+    });
+  });
+
   var ano = document.getElementById("ano");
   if (ano) ano.textContent = new Date().getFullYear();
 })();
